@@ -36,21 +36,31 @@ var generators = {
   }
 };
 
-var getTemplate = function getTemplate(file, data) {
-  var tmpl = _.template(read(file));
-  return tmpl(data);
-};
+var index_es6 = function () {
+  var getTemplate = function getTemplate(file, data) {
+    var tmpl = _.template(read(file));
+    return tmpl(data);
+  };
 
-var scaffold = function scaffold(name, data) {
-  var files = generators[name].files;
-  return files.map(function (file) {
-    return getTemplate(config.baseDir + '/' + file, data);
-  });
-};
+  var scaffold = function scaffold(name, data) {
+    var files = generators[name].files;
+    return files.map(function (file) {
+      return getTemplate(config.baseDir + '/' + file, data);
+    });
+  };
 
-var allTemplates = scaffold('testFile', { name: 'nate-jacobs' });
-mkdir('./BOOM');
+  var allTemplates = scaffold('testFile', { name: 'test-data' });
 
-allTemplates.forEach(function (tmpl, i) {
-  write('./BOOM/' + i + '.js', tmpl);
-});
+  var writeAllTemplates = function writeAllTemplates() {
+    mkdir('./BOOM');
+    allTemplates.forEach(function (tmpl, i) {
+      write('./BOOM/' + i + '.js', tmpl);
+    });
+  };
+
+  return {
+    writeAllTemplates: writeAllTemplates
+  };
+}();
+
+module.exports = index_es6;
