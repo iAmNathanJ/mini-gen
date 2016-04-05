@@ -4,10 +4,10 @@
   "description": "Mini Generator",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && npm run dev",
-    "test": "tape test/test.js | tap-spec",
     "build": "rollup -c",
-    "dev": "./dev.js"
+    "pretest": "npm run build",
+    "test": "tape test/test.js | tap-spec",
+    "start": "npm run build && ./dev.js"
   },
   "repository": {
     "type": "git",
