@@ -1,0 +1,19 @@
+{
+  "name": "mini-gen",
+  "version": "0.0.1",
+  "description": "Mini Generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/test.js | tap-spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iAmNathanJ/mini-gen.git"
+  },
+  "author": "Nathan Jacobs",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iAmNathanJ/mini-gen/issues"
+  },
+  "homepage": "https://github.com/iAmNathanJ/mini-gen#readme"
+}
