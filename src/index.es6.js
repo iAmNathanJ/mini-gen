@@ -14,21 +14,29 @@ let generators = {
   }
 };
 
-const getTemplate = (file, data) => {
-  let tmpl = _.template(read(file));
-  return tmpl(data);
-};
+export default (function() {
+  const getTemplate = (file, data) => {
+    let tmpl = _.template(read(file));
+    return tmpl(data);
+  };
 
-const scaffold = (name, data) => {
-  let files = generators[name].files;
-  return files.map(file => {
-    return getTemplate(`${config.baseDir}/${file}`, data);
-  });
-};
+  const scaffold = (name, data) => {
+    let files = generators[name].files;
+    return files.map(file => {
+      return getTemplate(`${config.baseDir}/${file}`, data);
+    });
+  };
 
-let allTemplates = scaffold('testFile', {name: 'nate-jacobs'});
-mkdir('./BOOM');
+  const allTemplates = scaffold('testFile', {name: 'test-data'});
 
-allTemplates.forEach((tmpl, i) => {
-  write(`./BOOM/${i}.js`, tmpl);
-});
+  const writeAllTemplates = () => {
+    mkdir('./BOOM');
+    allTemplates.forEach((tmpl, i) => {
+      write(`./BOOM/${i}.js`, tmpl);
+    });
+  };
+
+  return {
+    writeAllTemplates: writeAllTemplates
+  };
+})();
